@@ -216,8 +216,4 @@ if ($token_value -ne 1) {
 }
 
 ### Task to execute ##
-Install-Module PSWindowsUpdate
-Import-Module -Name PSWindowsUpdate
-Get-Command -Module PSWindowsUpdate
-Add-WUServiceManager -MicrosoftUpdate
 Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
