@@ -217,6 +217,4 @@ if ($token_value -ne 1) {
 
 ### Task to execute ##
 Import-Module PSWindowsUpdate
-$updates = Get-WindowsUpdate
-Install-WindowsUpdate -Update $updates
-Restart-Computer
+Get-WUInstall -AcceptAll –AutoReboot
