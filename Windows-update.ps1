@@ -216,6 +216,7 @@ if ($token_value -ne 1) {
 }
 
 ### Task to execute ##
-Install-Module PSWindowsUpdate
-Add-WUServiceManager -MicrosoftUpdate
-Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot | Out-File "C:\($env.computername-Get-Date -f yyyy-MM-dd)-MSUpdates.log" -Force
+Import-Module PSWindowsUpdate
+$updates = Get-WindowsUpdate
+Install-WindowsUpdate -Update $updates
+Restart-Computer
