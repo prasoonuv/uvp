@@ -216,26 +216,8 @@ if ($token_value -ne 1) {
 }
 
 ### Task to execute ##
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-Install-PackageProvider -Name NuGet -Force
-Import-PackageProvider -Name NuGet
-
-# Update the PSGallery (the Default) PSRepository
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-Get-PSRepository -Name PSGallery | Format-List * -Force
-
-# List all modules installed
-Write-Output "Running:  Get-InstalledModule"
-Get-InstalledModule
-
-# Install the module we need
-Write-Output "Running:  Install-Module -Name PSWindowsUpdate -Force"
-Install-Module -Name PSWindowsUpdate -Force
-
-# Import the module
+Install-Module PSWindowsUpdate
 Import-Module -Name PSWindowsUpdate
-
-# List support commands from the module:
 Get-Command -Module PSWindowsUpdate
-Get-WUInstall -MicrosoftUpdate -AcceptAll -AutoReboot
-Get-WUInstall -MicrosoftUpdate -AcceptAll -Download -Install -AutoReboot
+Add-WUServiceManager -MicrosoftUpdate
+Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
