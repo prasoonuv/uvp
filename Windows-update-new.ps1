@@ -216,38 +216,4 @@ if ($token_value -ne 1) {
 }
 
 ### Task to execute ##
-###############################################################################
-###############################################################################
-#####  PowerShell Windows Update Script.
-#####  Leverages Microsoft Update provider to install all missing updates
-###############################################################################
-###############################################################################
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-Install-PackageProvider -Name NuGet -Force
-Import-PackageProvider -Name NuGet
-
-# Update the PSGallery (the Default) PSRepository
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-Get-PSRepository -Name PSGallery | Format-List * -Force
-
-# List all modules installed
-Write-Output "Running:  Get-InstalledModule"
-Get-InstalledModule
-
-# Install the module we need
-Write-Output "Running:  Install-Module -Name PSWindowsUpdate -Force"
-Install-Module -Name PSWindowsUpdate -Force
-
-# Import the module
-Import-Module -Name PSWindowsUpdate
-
-# List support commands from the module:
-Get-Command -Module PSWindowsUpdate
-
-# Now, check if the Microsoft Update service is available.
-# If not, we need to add it.
-
-
-# Force the installation of updates and reboot of server (if required)
-Get-WUInstall -MicrosoftUpdate -AcceptAll -AutoReboot
-Get-WUInstall -MicrosoftUpdate -AcceptAll -Download -Install -AutoReboot
+Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -AutoReboot
