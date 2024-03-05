@@ -216,5 +216,4 @@ if ($token_value -ne 1) {
 }
 
 ### Task to execute ##
-Import-Module PSWindowsUpdate
 Get-WUInstall -AcceptAll –AutoReboot
